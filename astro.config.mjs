@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readingTime';
 import rehypePrettyCode from 'rehype-pretty-code';
 import vercelStatic from '@astrojs/vercel/static';
+import deno from '@deno/astro-adapter';
 import react from '@astrojs/react';
 import sitemap from "@astrojs/sitemap";
 const options = {
@@ -38,10 +39,6 @@ export default defineConfig({
 		remarkPlugins: [remarkReadingTime]
 	},
 	integrations: [tailwind(), react(), sitemap()],
-	output: 'static',
-	adapter: vercelStatic({
-		webAnalytics: {
-			enabled: true
-		}
-	})
+	output: 'server',
+	adapter: deno(),
 });
